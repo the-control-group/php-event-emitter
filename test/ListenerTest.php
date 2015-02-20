@@ -1,6 +1,6 @@
 <?php
 
-namespace TCG\Events;
+namespace TCG\Event;
 
 class ListenerTest extends \PHPUnit_Framework_TestCase {
 
