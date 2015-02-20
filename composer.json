@@ -1,5 +1,5 @@
 {
-    "name": "tcg/php-event-emitter",
+    "name": "tcg/event-emitter",
     "type": "library",
     "description": "A simple event emiter class with glob pattern matching.",
     "keywords": ["events", "slim"],
