@@ -1,0 +1,19 @@
+{
+    "name": "tcg/slim-events",
+    "type": "library",
+    "description": "A simple event emmiter/responder class to be used with the Slim PHP Framework",
+    "keywords": ["events", "slim"],
+    "license": "",
+    "authors": [
+        {
+            "name": "Nathan Cobb",
+            "email": "nathan.cobb@thecontrolgroup.com"
+        }
+    ],
+    "require": {
+        "slim/slim": "2.*"
+    },
+    "autoload": {
+        "psr-4": { "TCG\\Events\\": "src/" }
+    }
+}
