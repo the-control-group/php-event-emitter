@@ -1,7 +1,9 @@
 PHP Event Emitter
 =================
+[![wercker status](https://app.wercker.com/status/bf7682ab160fc8e4a2acdb4b2721f582/s "wercker status")](https://app.wercker.com/project/bykey/bf7682ab160fc8e4a2acdb4b2721f582)
 
 A simple event emiter class with glob pattern matching.
+
 
 Usage
 -----
