@@ -2,11 +2,11 @@
 
 namespace TCG\Events;
 
-class EventListenerTest extends \PHPUnit_Framework_TestCase {
+class ListenerTest extends \PHPUnit_Framework_TestCase {
 
 	public function testConstruct() {
 		$target = 0;
-		$listener = new EventListener();
+		$listener = new Listener();
 		$listener->emit(1);
 		$this->assertEquals(0, $target);
 	}
@@ -14,7 +14,7 @@ class EventListenerTest extends \PHPUnit_Framework_TestCase {
 	public function testConstructWithCallable() {
 		$target = 0;
 		$callable = function($inc) use(&$target){ $target = $target + $inc; };
-		$listener = new EventListener($callable);
+		$listener = new Listener($callable);
 		$listener->emit(1);
 		$this->assertEquals(1, $target);
 	}
@@ -22,7 +22,7 @@ class EventListenerTest extends \PHPUnit_Framework_TestCase {
 	public function testAdd() {
 		$target = 0;
 		$callable = function($inc) use(&$target){ $target = $target + $inc; };
-		$listener = new EventListener();
+		$listener = new Listener();
 
 		$count = $listener->add($callable);
 		$this->assertEquals(1, $count);
@@ -34,7 +34,7 @@ class EventListenerTest extends \PHPUnit_Framework_TestCase {
 	public function testAddDuplicate() {
 		$target = 0;
 		$callable = function($inc) use(&$target){ $target = $target + $inc; };
-		$listener = new EventListener();
+		$listener = new Listener();
 
 		$count = $listener->add($callable);
 		$this->assertEquals(1, $count);
@@ -49,7 +49,7 @@ class EventListenerTest extends \PHPUnit_Framework_TestCase {
 	public function testRemove() {
 		$target = 0;
 		$callable = function($inc) use(&$target){ $target = $target + $inc; };
-		$listener = new EventListener();
+		$listener = new Listener();
 		
 		$count = $listener->add($callable);
 		$this->assertEquals(1, $count);

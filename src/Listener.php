@@ -1,8 +1,8 @@
 <?php
 
-namespace TCG\Events;
+namespace TCG\Event;
 
-class EventListener {
+class Listener {
 
 	protected $callables = array();
 

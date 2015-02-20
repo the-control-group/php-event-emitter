@@ -1,7 +1,7 @@
 {
-    "name": "tcg/slim-events",
+    "name": "tcg/php-event-emitter",
     "type": "library",
-    "description": "A simple event emmiter/responder class to be used with the Slim PHP Framework",
+    "description": "A simple event emiter class with glob pattern matching.",
     "keywords": ["events", "slim"],
     "license": "MIT",
     "authors": [
@@ -15,10 +15,9 @@
         }
     ],
     "require": {
-        "php": ">=5.4.0",
-        "slim/slim": "2.*"
+        "php": ">=5.4.0"
     },
     "autoload": {
-        "psr-4": { "TCG\\Events\\": "src/" }
+        "psr-4": { "TCG\\Event\\": "src/" }
     }
 }

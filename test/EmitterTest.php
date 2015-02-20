@@ -2,15 +2,15 @@
 
 namespace TCG\Events;
 
-class EventEmitterTest extends \PHPUnit_Framework_TestCase {
+class EmitterTest extends \PHPUnit_Framework_TestCase {
 
 	public function testGlob2regexWithoutDeliminator(){
-		$regex = EventEmitter::glob2regex('[a]:**:b');
+		$regex = Emitter::glob2regex('[a]:**:b', null);
 		$this->assertEquals('/\[a\]\:\*\*\:b/', $regex);
 	}
 
 	public function testGlob2regexWithDeliminator(){
-		$regex = EventEmitter::glob2regex('[a]:**:b', ':');
+		$regex = Emitter::glob2regex('[a]:**:b', ':');
 		$this->assertEquals('/\[a\]\:.*\:b/', $regex);
 	}
 
@@ -19,7 +19,7 @@ class EventEmitterTest extends \PHPUnit_Framework_TestCase {
 		$targetB = 0;
 		$callableA = function($slug, $inc) use(&$targetA){ $targetA = $targetA + $inc; };
 		$callableB = function($slug, $inc) use(&$targetB){ $targetB = $targetB + $inc; };
-		$emitter = new EventEmitter();
+		$emitter = new Emitter();
 		$emitter->on('aaa', $callableA);
 		$emitter->on('bbb', $callableB);
 		$emitter->emit('aaa', 1);
@@ -32,7 +32,7 @@ class EventEmitterTest extends \PHPUnit_Framework_TestCase {
 		$target = 0;
 		$callableA = function($slug, $inc) use(&$target){ $target = $target + $inc; };
 		$callableB = function($slug, $inc) use(&$target){ $target = $target + $inc; };
-		$emitter = new EventEmitter();
+		$emitter = new Emitter();
 		$emitter->on('aaa', $callableA);
 		$emitter->on('aaa', $callableB);
 		$emitter->emit('aaa', 1);
@@ -42,7 +42,7 @@ class EventEmitterTest extends \PHPUnit_Framework_TestCase {
 	public function testOnWithDuplicates(){
 		$targetA = 0;
 		$callableA = function($slug, $inc) use(&$targetA){ $targetA = $targetA + $inc; };
-		$emitter = new EventEmitter();
+		$emitter = new Emitter();
 		$emitter->on('aaa', $callableA);
 		$emitter->on('aaa', $callableA);
 		$emitter->emit('aaa', 1);
@@ -53,7 +53,7 @@ class EventEmitterTest extends \PHPUnit_Framework_TestCase {
 		$target = 0;
 		$callableA = function($slug, $inc) use(&$target){ $target = $target + $inc; };
 		$callableB = function($slug, $inc) use(&$target){ $target = $target + $inc; };
-		$emitter = new EventEmitter();
+		$emitter = new Emitter();
 		$emitter->on('aaa', $callableA);
 		$emitter->on('aaa', $callableB);
 		$emitter->off('aaa');
@@ -65,7 +65,7 @@ class EventEmitterTest extends \PHPUnit_Framework_TestCase {
 		$target = 0;
 		$callableA = function($slug, $inc) use(&$target){ $target = $target + $inc; };
 		$callableB = function($slug, $inc) use(&$target){ $target = $target + $inc; };
-		$emitter = new EventEmitter();
+		$emitter = new Emitter();
 		$emitter->on('aaa', $callableA);
 		$emitter->on('aaa', $callableB);
 		$emitter->off('aaa', $callableB);

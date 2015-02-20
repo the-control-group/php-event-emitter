@@ -1,23 +1,23 @@
 <?php
 
-namespace TCG\Events;
+namespace TCG\Event;
 
-class EventEmitter {
+class Emitter {
 
 	protected $listeners = array();
-	protected $deliminator = null;
+	protected $deliminator;
 
 
 
 	// configure the deliminator used for event slugs
-	public function __construct($deliminator = null) {
-		if(is_string($deliminator)) $this->deliminator = $deliminator;
+	public function __construct($deliminator = ':') {
+		$this->deliminator = $deliminator;
 	}
 
 
 
 
-	public function on($pattern, callable $callable){
+	public function on($pattern, callable $callable) {
 		$regex = self::glob2regex($pattern, $this->deliminator);
 
 		// listener already exists
@@ -27,13 +27,13 @@ class EventEmitter {
 		}
 
 		// create a new listener
-		$this->listeners[$regex] = new EventListener($callable);
+		$this->listeners[$regex] = new Listener($callable);
 	}
 
 
 
 
-	public function off($pattern, callable $callable = null){
+	public function off($pattern, callable $callable = null) {
 		$regex = self::glob2regex($pattern, $this->deliminator);
 
 		// no such listener
