@@ -18,11 +18,13 @@ class Event extends \Slim\Middleware {
 
 	private function match($pattern, $name) {
 		// TODO: return true/false if pattern matches name
-		echo($this->glob2regex($name));
+		if($this->glob2regex($name)){
+
+		}
 	}
 
 	public function on($pattern, $callable){
-		array_push($this->listeners, array('pattern': $pattern, 'callable': $callable));
+		array_push($this->listeners, array('pattern'=>$pattern, 'callable'=>$callable));
 	}
 
 	public function emit($name, $data) {
@@ -43,8 +45,12 @@ class Event extends \Slim\Middleware {
 	}
 }
 
+
+
+
 // $app->event->on('account:order:*', function($name, $data){
 // 	// fire a pixel
+// 	echo "firing pixel!";
 // });
 
 // $app->event->emit('account:order:success', array(
