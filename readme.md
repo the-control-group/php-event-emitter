@@ -45,7 +45,7 @@ Using the provided [slim](http://www.slimframework.com) middleware:
 
 $app = new \Slim\Slim();
 
-$app->use(new \TCG\Event\Middleware());
+$app->add(new \TCG\Event\Middleware());
 
 ```
 
