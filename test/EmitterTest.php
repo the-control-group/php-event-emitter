@@ -6,12 +6,12 @@ class EmitterTest extends \PHPUnit_Framework_TestCase {
 
 	public function testGlob2regexWithoutDeliminator(){
 		$regex = Emitter::glob2regex('[a]:**:b', null);
-		$this->assertEquals('/\[a\]\:\*\*\:b/', $regex);
+		$this->assertEquals('/^\[a\]\:\*\*\:b$/', $regex);
 	}
 
 	public function testGlob2regexWithDeliminator(){
 		$regex = Emitter::glob2regex('[a]:**:b', ':');
-		$this->assertEquals('/\[a\]\:.*\:b/', $regex);
+		$this->assertEquals('/^\[a\]\:.*\:b$/', $regex);
 	}
 
 	public function testOn(){
@@ -22,8 +22,10 @@ class EmitterTest extends \PHPUnit_Framework_TestCase {
 		$emitter = new Emitter();
 		$emitter->on('aaa', $callableA);
 		$emitter->on('bbb', $callableB);
+		$emitter->on('ccc:ddd', $callableB);
 		$emitter->emit('aaa', 1);
 		$emitter->emit('bbb', -1);
+		$emitter->emit('ccc:ddd:eee', -1);
 		$this->assertEquals(1, $targetA);
 		$this->assertEquals(-1, $targetB);
 	}
