@@ -76,13 +76,13 @@ class Emitter {
 	// | foo:bar         | No    | No      | No    |
 
 	static function glob2regex($pattern, $deliminator = null) {
-		$escaped_pattern = preg_quote($pattern);
+		$escaped_pattern = preg_quote($pattern, '/');
 
 		// we don't need to worry about a deliminator
 		if($deliminator === null) return '/^' . $escaped_pattern . '$/';
 
 		// build the regex string
-		$escaped_deliminator = preg_quote($deliminator);
+		$escaped_deliminator = preg_quote($deliminator, '/');
 		return '/^' . implode(
 			$escaped_deliminator,
 			array_map(function($s) use($deliminator, $escaped_deliminator) {

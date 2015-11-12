@@ -14,6 +14,11 @@ class EmitterTest extends \PHPUnit_Framework_TestCase {
 		$this->assertEquals('/^\[a\]\:.*\:b$/', $regex);
 	}
 
+	public function testGlob2regexWithDeliminatorAndSlash(){
+		$regex = Emitter::glob2regex('[a]:**:/b/', ':');
+		$this->assertEquals('/^\[a\]\:.*\:\/b\/$/', $regex);
+	}
+
 	public function testOn(){
 		$targetA = 0;
 		$targetB = 0;
